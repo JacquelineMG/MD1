@@ -1,4 +1,4 @@
-/* pseudocode: 
+/* pseudocode:
   - loop through the numbers 1 to 20
   - if the current number is evenly divisible by 3 & 4, print "LoopyLighthouse"
   - if the current number is evenly divisible by 3, print "Loopy"
@@ -8,12 +8,12 @@
 
 
 for (let x = 1; x <= 20; x++) {
-  let output = ""
+  let output = "";
   if (x % 3 === 0) {
     output += "Loopy";
   }
   if (x % 4 === 0) {
     output += "Lighthouse";
   }
-  console.log(output === ""? x : output)
+  console.log(output === "" ? x : output);
 }
