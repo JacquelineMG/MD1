@@ -1,3 +1,5 @@
+// assertEqual: compares two inputs and console logs a pass or fail message depending on if the inputs are equal or not.
+
 const assertEqual = function(actual, expected) {
   return actual === expected ? console.log(`✅ Assertion Passed: ${actual} === ${expected}`) : console.log(`❌ Assertion Failed: ${actual} !== ${expected}`);
 };
