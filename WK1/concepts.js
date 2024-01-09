@@ -8,7 +8,7 @@ const joinList = function(listArr) {
   return string;
 };
 
-
+//Test Examples:
 const conceptList = ["gists", "types", "operators", "iteration", "problem solving"];
 const concepts = joinList(conceptList);
 console.log(`Today I learned about ${concepts}.`);
