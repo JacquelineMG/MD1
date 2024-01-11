@@ -1,3 +1,5 @@
+// without removes unwanted items from an array
+
 // const assertArraysEqual = require("./assertArraysEqual");
 // const eqArrays = require("./eqArrays");
 
