@@ -3,7 +3,7 @@
 //const assertEqual = require("../../WK1/lotide/assertEqual");
 
 const countOnly = function(itemsArr, itemsToCount) {
-  let countObj = {};
+  const countObj = {};
 
   for (const i of itemsArr) {
     if (itemsToCount[i]) {
@@ -14,7 +14,7 @@ const countOnly = function(itemsArr, itemsToCount) {
       }
     }
   }
-  console.log(countObj);
+  return countObj;
 };
 
 // Test Case:
@@ -22,4 +22,4 @@ const countOnly = function(itemsArr, itemsToCount) {
 const arr = [1, 2, 4, 2, 3, 3, 3, 4, 2, 1];
 const obj = {1: true, 2: false, 3: true, 4: true, 5: true};
 
-countOnly(arr, obj);
+console.log(countOnly(arr, obj));
