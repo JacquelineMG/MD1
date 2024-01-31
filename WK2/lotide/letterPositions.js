@@ -5,15 +5,15 @@ const letterPositions = function(sentence) {
   const sentenceEdit = sentence.replace(/\s/g, '').toUpperCase();
 
   for (let i = 0; i <= sentenceEdit.length - 1; i++) {
-    if (positionObj[sentence[i]]) {
-      positionObj[sentence[i]] = ;
+    if (positionObj[sentenceEdit[i]]) {
+      positionObj[sentenceEdit[i]].push(i);
     } else {
-      positionObj[sentence[i]] = ;
+      positionObj[sentenceEdit[i]] = [i];
     }
   }
   console.log(positionObj);
 };
 
-letterPositions("THIS Is a Sentence");
+letterPositions("THIS Is a Test SENtencE");
 
 
