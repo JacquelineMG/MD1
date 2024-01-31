@@ -1,5 +1,6 @@
 // tail: returns a new array with all except the first item of original array or an empty array if the input has a length equal or less than one.
 
+// eslint-disable-next-line no-unused-vars
 const tail = function(array) {
   const newArr = [];
   if (array.length <= 1) {
