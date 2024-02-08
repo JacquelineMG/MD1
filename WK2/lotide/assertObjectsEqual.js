@@ -10,7 +10,8 @@ const assertObjectsqual = function(actual, expected) {
 // TEST CASES:
 const object1 = {colours: ["red"]};
 const object2 = {colours: ["red"]};
-const object3 = {colour: "red", temp: "cold", height: "tall", weather: "cloudy"};
+const object3 = {colour: "red", temp: "cold", height: "taLl", weather: "cloudy"};
 const object4 = {colour: "red", temp: "cold", height: "tall", weather: "cloudy"};
 
+assertObjectsqual(object1, object2);
 assertObjectsqual(object3, object4);
