@@ -1,15 +1,14 @@
-const person = {
-  name: "Paul",
-  address: {
-    street: "310 W 95th",
-    city: "New York",
-    zipCode: 10027
-  }
+const myfunc = function() {
+  console.log("FUNCTIONS");
 };
 
+myfunc.trait = "red";
+myfunc.size = "little";
+myfunc.age = "a few minutes";
 
-person["phoneNumbers"] = ["1234567", "2345678", "3456789"];
+const callback = function(f) {
+  console.log("This is a callback!");
+  f();
+};
 
-console.log(person["phoneNumbers"] instanceof String);
-
-console.log(Object.keys(person));
+callback(myfunc);
