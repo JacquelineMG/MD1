@@ -1,7 +1,11 @@
 // rasinAlarm checks an array for raisins ("🍇") and returns "Raisin alert!" if found or an "All good!"
 
 const raisinAlarm = function(cookie) {
-  for (let c of cookie) {
+  return cookie.includes("🍇") ? "🍇 Raisin alert!🍇" : "😎 All good! 😎";
+};
+
+const raisinAlarmLoop = function(cookie) {
+  for (const c of cookie) {
     if (c === "🍇") {
       return "Raisin alert!";
     }
@@ -13,3 +17,7 @@ const raisinAlarm = function(cookie) {
 console.log(raisinAlarm(["🍫", "🍫", "🍇", "🍫"]));
 console.log(raisinAlarm(["🍫", "🍇", "🍫", "🍫", "🍇"]));
 console.log(raisinAlarm(["🍫", "🍫", "🍫"]));
+
+console.log(raisinAlarmLoop(["🧁", "🍫", "🍪", "🍫"]));
+console.log(raisinAlarmLoop(["🍫", "🍇", "🍪", "🍪", "🍇"]));
+console.log(raisinAlarmLoop(["🧁", "🍫", "🍪"]));
