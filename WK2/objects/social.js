@@ -14,7 +14,7 @@ const data = {
   f03: {
     name: "Charlie",
     age: 35,
-    follows: ["f01", "f04", "f06"]
+    follows: ["f01", "f04", "f06", "f05"]
   },
   f04: {
     name: "Debbie",
@@ -38,16 +38,46 @@ const biggestFollower = function(dataOb) {
   let result = "";
   let current = 0;
 
-  for (const d in data) {
-    const followsAr = data[d].follows;
+  for (const d in dataOb) {
+    const followsAr = dataOb[d].follows;
 
     if (followsAr.length > current) {
       current = followsAr.length;
-      result = data[d].name;
+      result = dataOb[d].name;
     }
   }
   return result;
 };
 
 const result1 = biggestFollower(data);
-console.log("Biggest Follower:", result1);
+//console.log("Biggest Follower:", result1);
+
+
+// mostPopular returns the name of individual who is most followed
+const mostPopular = function(dataOb) {
+  const tallyOb = {};
+  let result = "";
+  let current = 0;
+
+  for (const d in dataOb) {
+    const followsAr = dataOb[d].follows;
+
+    for (const f of followsAr) {
+      if (tallyOb[f]) {
+        tallyOb[f] += 1;
+      } else {
+        tallyOb[f] = 1;
+      }
+    }
+  }
+  for (const t in tallyOb) {
+    if (tallyOb[t] > current) {
+      current = tallyOb[t];
+      result = t;
+    }
+  }
+  return dataOb[result].name;
+};
+
+const result2 = mostPopular(data);
+console.log("Most Popular:", result2);
