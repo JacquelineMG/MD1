@@ -33,24 +33,43 @@ const data = {
   }
 };
 
-// biggestFollower returns the name of individual who follows the most people
-const biggestFollower = function(dataOb) {
-  let result = "";
-  let current = 0;
+// printAll outputs a list of everyone and for each of them, the names of who they follow and who follows them
+
+const listFollows = function(dataOb) {
+  const list = [];
+  let followsAr = [];
 
   for (const d in dataOb) {
-    const followsAr = dataOb[d].follows;
+    followsAr = dataOb[d].follows;
 
-    if (followsAr.length > current) {
-      current = followsAr.length;
-      result = dataOb[d].name;
+    for (const f of followsAr) {
+      console.log("sdfsifhso ", dataOb[f].name);
     }
   }
-  return result;
+
+
 };
 
-const result1 = biggestFollower(data);
-//console.log("Biggest Follower:", result1);
+const printAll = function(dataOb) {
+  let result = {};
+  let follows = [];
+  let followedBy = [];
+
+  for (const d in dataOb) {
+
+    const userName = dataOb[d].name;
+    follows = dataOb[d].follows;
+    
+    result[userName] = {
+      follows: follows,
+      followedBy: followedBy
+    };
+  }
+  console.log(result);
+};
+
+const result3 = printAll(data);
+console.log("Print All:", result3);
 
 
 // mostPopular returns the name of individual who is most followed
@@ -80,4 +99,23 @@ const mostPopular = function(dataOb) {
 };
 
 const result2 = mostPopular(data);
-console.log("Most Popular:", result2);
+// console.log("Most Popular:", result2);
+
+// biggestFollower returns the name of individual who follows the most people
+const biggestFollower = function(dataOb) {
+  let result = "";
+  let current = 0;
+
+  for (const d in dataOb) {
+    const followsAr = dataOb[d].follows;
+
+    if (followsAr.length > current) {
+      current = followsAr.length;
+      result = dataOb[d].name;
+    }
+  }
+  return result;
+};
+
+const result1 = biggestFollower(data);
+//console.log("Biggest Follower:", result1);
