@@ -20,7 +20,7 @@ const printAll = function(dataOb) {
   let newOb = {};
   let name;
   let followsList;
-  let followersList;
+  // let followersList;
 
   for (const d in dataOb) {
 
@@ -31,7 +31,6 @@ const printAll = function(dataOb) {
       
       if (newOb[name]) {
         newOb[name].follows += `, ${followsList}`;
-        newOb[name].followers += "";
       }
       if (!newOb[name]) {
         newOb[name] = {
