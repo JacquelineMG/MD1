@@ -1,7 +1,7 @@
 const data = {
   f01: {
     name: "Alice",
-    age: 15,
+    age: 45,
     follows: ["f03"]
   },
   f02: {
@@ -20,20 +20,29 @@ const printAll = function(dataOb) {
   let newOb = {};
   let name;
   let followsList;
+  let followersList;
 
   for (const d in dataOb) {
-    console.log("d:", d);
 
     for (const f of dataOb[d].follows) {
-      console.log("f:", f);
-      followsList = [dataOb[f].name];
-      console.log(followsList);
+      followsList = dataOb[f].name;
+      
+      name = dataOb[d].name;
+      
+      if (newOb[name]) {
+        newOb[name].follows += `, ${followsList}`;
+        newOb[name].followers += "";
+      }
+      if (!newOb[name]) {
+        newOb[name] = {
+          follows: followsList,
+          followers: ""
+        };
+      }
     }
-    
-    name = dataOb[d].name;
-    newOb[name] = {};
+
   }
-  console.log(newOb);
+  console.log("Result:", newOb);
 };
 
 printAll(data);
