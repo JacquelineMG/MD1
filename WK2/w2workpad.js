@@ -20,26 +20,35 @@ const printAll = function(dataOb) {
   let newOb = {};
   let name;
   let followsList;
-  // let followersList;
+  let followersList = {};
 
   for (const d in dataOb) {
 
     for (const f of dataOb[d].follows) {
       followsList = dataOb[f].name;
-      
+   
       name = dataOb[d].name;
+
+      // make followersList object
+      if (followersList[followsList]) {
+        followersList[followsList] += `, ${name}`;
+      } else {
+        followersList[followsList] = name;
+      }
       
       if (newOb[name]) {
         newOb[name].follows += `, ${followsList}`;
-      }
-      if (!newOb[name]) {
+        newOb[name].followers = followersList[name];
+      } else {
         newOb[name] = {
           follows: followsList,
-          followers: ""
         };
       }
     }
 
+  }
+  for (let x in newOb) {
+    newOb[x].followers = followersList[x];
   }
   console.log("Result:", newOb);
 };
