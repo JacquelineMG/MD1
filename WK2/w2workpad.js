@@ -18,8 +18,8 @@ const data = {
 
 const printAll = function(dataOb) {
   let newOb = {};
-  let name;
-  let followsList;
+  let name = "";
+  let followsList = {};
   let followersList = {};
 
   for (const d in dataOb) {
