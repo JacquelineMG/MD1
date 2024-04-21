@@ -1,3 +1,4 @@
+// given an array of 2 or more numbers, sumLargestNumbers returns the sum of the array's 2 largest numbers
 const sumLargestNumbers = function(data) {
 
   const sortedData = data.sort((a, b) => b - a);
