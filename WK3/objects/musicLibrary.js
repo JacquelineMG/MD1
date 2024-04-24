@@ -103,13 +103,31 @@ const generateUid = function() {
   return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 };
 
+const generateTrackNumm = function(data) {
+  const tracks = data.tracks;
+  let count = 1;
+  
+  for (const t in tracks) {
+    count ++;
+  }
+
+  if (count < 10) {
+    return `t0${count}`;
+  }
+
+  if (count >= 10) {
+    return `t${count}`;
+  }
+
+};
+
 
 // adds a track to the library
 const addTrack = function(data, name, artist, album) {
-  const newID = generateUid();
+  const trackNum = generateTrackNumm(data);
 
-  data.tracks[newID] = {
-    id: newID,
+  data.tracks[trackNum] = {
+    id: trackNum,
     name: name,
     artist: artist,
     album: album
@@ -118,7 +136,14 @@ const addTrack = function(data, name, artist, album) {
 };
 
 addTrack(library, "Video Killed the Radio Star", "Bruce Woolley", "English Garden");
+addTrack(library, "Song Title", "Good Singer", "Tracks'A'Plenty");
+addTrack(library, "Title of Songs", "Okay Singer III", "Shiny Disc");
+
 console.log(library.tracks);
+
+
+
+
 
 // adds a playlist to the library
 const addPlaylist = function(name) {
