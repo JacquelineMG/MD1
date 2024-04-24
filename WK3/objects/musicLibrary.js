@@ -73,6 +73,8 @@ printTracks(library);
 // p01: Coding Music - 2 tracks
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
+
+/*
 const printPlaylist = function(data, playlistId) {
   const playlist = data.playlists[playlistId];
   const tracksArr = playlist.tracks;
@@ -93,6 +95,7 @@ const addTrackToPlaylist = function(trackId, playlistId) {
 
 };
 
+*/
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
@@ -102,10 +105,20 @@ const generateUid = function() {
 
 
 // adds a track to the library
-const addTrack = function(name, artist, album) {
+const addTrack = function(data, name, artist, album) {
+  const newID = generateUid();
+
+  data.tracks[newID] = {
+    id: newID,
+    name: name,
+    artist: artist,
+    album: album
+  };
 
 };
 
+addTrack(library, "Video Killed the Radio Star", "Bruce Woolley", "English Garden");
+console.log(library.tracks);
 
 // adds a playlist to the library
 const addPlaylist = function(name) {
