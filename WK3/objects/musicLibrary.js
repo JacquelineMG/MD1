@@ -99,32 +99,40 @@ const addTrackToPlaylist = function(trackId, playlistId) {
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
-const generateUid = function() {
-  return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-};
+// const generateUid = function() {
+//   return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+// };
 
-const generateTrackNumm = function(data) {
-  const tracks = data.tracks;
+
+const generateIdNum = function(data, type) {
+  const list = data[type];
   let count = 1;
+  let prefix = "";
+
+  if (type === "tracks") {
+    prefix = "t";
+  }
+  if (type === "playlists") {
+    prefix = "p";
+  }
   
-  for (const t in tracks) {
+  for (const l in list) {
     count ++;
   }
-
   if (count < 10) {
-    return `t0${count}`;
+    return `${prefix}0${count}`;
   }
-
   if (count >= 10) {
-    return `t${count}`;
+    return `${prefix}${count}`;
   }
 
 };
 
+/*
 
 // adds a track to the library
 const addTrack = function(data, name, artist, album) {
-  const trackNum = generateTrackNumm(data);
+  const trackNum = generateIdNum(data, "tracks");
 
   data.tracks[trackNum] = {
     id: trackNum,
@@ -139,16 +147,25 @@ addTrack(library, "Video Killed the Radio Star", "Bruce Woolley", "English Garde
 addTrack(library, "Song Title", "Good Singer", "Tracks'A'Plenty");
 addTrack(library, "Title of Songs", "Okay Singer III", "Shiny Disc");
 
-console.log(library.tracks);
-
-
-
-
+console.log("CHECK", library.tracks);
+ */
 
 // adds a playlist to the library
-const addPlaylist = function(name) {
+const addPlaylist = function(data, name) {
+  const playlistNum = generateIdNum(data, "playlists");
 
+  data.playlists[playlistNum] = {
+    id: playlistNum,
+    name: name,
+    tracks: []
+  };
 };
+
+addPlaylist(library, "Trial and Error");
+addPlaylist(library, "What a playlist");
+
+console.log(library.playlists);
+
 
 
 // STRETCH:
