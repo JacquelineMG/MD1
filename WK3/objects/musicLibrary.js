@@ -35,7 +35,7 @@ const library = {
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
 
-/*
+
 
 const printPlaylists = function(data) {
   const playlists = data.playlists;
@@ -47,14 +47,14 @@ const printPlaylists = function(data) {
 
 printPlaylists(library);
 
-*/
+
 
 // prints a list of all tracks, using the following format:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 
-/*
+
 
 const printTracks = function(data) {
   const tracks = data.tracks;
@@ -66,7 +66,7 @@ const printTracks = function(data) {
 
 printTracks(library);
 
-*/
+
 
 
 // prints a list of tracks for a given playlist, using the following format:
@@ -74,7 +74,7 @@ printTracks(library);
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 
-/*
+
 const printPlaylist = function(data, playlistId) {
   const playlist = data.playlists[playlistId];
   const tracksArr = playlist.tracks;
@@ -91,11 +91,14 @@ printPlaylist(library, "p01");
 
 
 // adds an existing track to an existing playlist
-const addTrackToPlaylist = function(trackId, playlistId) {
-
+const addTrackToPlaylist = function(data, trackId, playlistId) {
+  const tracks = data.playlists[playlistId].tracks;
+  tracks.push(trackId);
 };
 
-*/
+addTrackToPlaylist(library, "t02", "p02");
+
+
 
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
@@ -128,7 +131,7 @@ const generateIdNum = function(data, type) {
 
 };
 
-/*
+
 
 // adds a track to the library
 const addTrack = function(data, name, artist, album) {
@@ -146,9 +149,7 @@ const addTrack = function(data, name, artist, album) {
 addTrack(library, "Video Killed the Radio Star", "Bruce Woolley", "English Garden");
 addTrack(library, "Song Title", "Good Singer", "Tracks'A'Plenty");
 addTrack(library, "Title of Songs", "Okay Singer III", "Shiny Disc");
-
-console.log("CHECK", library.tracks);
- */
+ 
 
 // adds a playlist to the library
 const addPlaylist = function(data, name) {
@@ -164,7 +165,9 @@ const addPlaylist = function(data, name) {
 addPlaylist(library, "Trial and Error");
 addPlaylist(library, "What a playlist");
 
-console.log(library.playlists);
+addTrackToPlaylist(library, "t04", "p03");
+addTrackToPlaylist(library, "t05", "p03");
+addTrackToPlaylist(library, "t06", "p04");
 
 
 
