@@ -177,5 +177,8 @@ addTrackToPlaylist(library, "t06", "p04");
 // tip: use "string".search("tri")
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
 const printSearchResults = function(query) {
-
+  const queryLC = query.toLowerCase();
+  console.log(queryLC);
 };
+
+printSearchResults("DISFOSDJF Ssfjsi ");
