@@ -34,9 +34,6 @@ const library = {
 // prints a list of all playlists, in the form:
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
-
-
-
 const printPlaylists = function(data) {
   const playlists = data.playlists;
 
@@ -45,17 +42,16 @@ const printPlaylists = function(data) {
   }
 };
 
-printPlaylists(library);
+console.log("------------------------");
+console.log("printPlaylists:");
 
+printPlaylists(library);
 
 
 // prints a list of all tracks, using the following format:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
-
-
-
 const printTracks = function(data) {
   const tracks = data.tracks;
 
@@ -64,17 +60,16 @@ const printTracks = function(data) {
   }
 };
 
+console.log("------------------------");
+console.log("printTracks:");
+
 printTracks(library);
-
-
 
 
 // prints a list of tracks for a given playlist, using the following format:
 // p01: Coding Music - 2 tracks
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
-
-
 const printPlaylist = function(data, playlistId) {
   const playlist = data.playlists[playlistId];
   const tracksArr = playlist.tracks;
@@ -86,7 +81,8 @@ const printPlaylist = function(data, playlistId) {
     console.log(`${tracks[t].id}: ${tracks[t].name} by ${tracks[t].artist} (${tracks[t].album})`);
   }
 };
-
+console.log("------------------------");
+console.log("printPlaylist:");
 printPlaylist(library, "p01");
 
 
@@ -99,14 +95,11 @@ const addTrackToPlaylist = function(data, trackId, playlistId) {
 addTrackToPlaylist(library, "t02", "p02");
 
 
-
 // generates a unique id
 // (already implemented: use this for addTrack and addPlaylist)
 // const generateUid = function() {
 //   return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 // };
-
-
 const generateIdNum = function(data, type) {
   const list = data[type];
   let count = 1;
@@ -128,9 +121,7 @@ const generateIdNum = function(data, type) {
   if (count >= 10) {
     return `${prefix}${count}`;
   }
-
 };
-
 
 
 // adds a track to the library
@@ -170,15 +161,26 @@ addTrackToPlaylist(library, "t05", "p03");
 addTrackToPlaylist(library, "t06", "p04");
 
 
-
 // STRETCH:
 // given a query string string, prints a list of tracks
 // where the name, artist or album contains the query string (case insensitive)
 // tip: use "string".search("tri")
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
-const printSearchResults = function(query) {
-  const queryLC = query.toLowerCase();
-  console.log(queryLC);
+
+const printSearchResults = function(data, query) {
+  const tracks = data.tracks;
+  const querySearch = new RegExp(query, "i");
+
+  for (const t in tracks) {
+    const track = tracks[t];
+
+    if (querySearch.test(track.name) || querySearch.test(track.artist) || querySearch.test(track.album)) {
+      console.log(`${tracks[t].id}: ${tracks[t].name} by ${tracks[t].artist} (${tracks[t].album})`);
+    }
+  }
 };
 
-printSearchResults("DISFOSDJF Ssfjsi ");
+console.log("------------------------");
+console.log("printSearchResult:");
+
+printSearchResults(library, "three");

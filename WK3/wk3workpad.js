@@ -37,23 +37,16 @@ const library = {
 
 const printSearchResults = function(data, query) {
   const tracks = data.tracks;
+  const querySearch = new RegExp(query, "i");
 
   for (const t in tracks) {
+    let track = tracks[t];
 
-    let obj = tracks[t];
-    let objArr = Object.values(obj);
-    let objStr = "";
-
-    for (let i of objArr) {
-      objStr += ` ${i} `;
-      console.log(objStr);
+    if (querySearch.test(track.name) || querySearch.test(track.artist) || querySearch.test(track.album)) {
+      console.log(tracks[t]);
     }
-
-    let search = objStr[objStr.search(query)];
-
-    console.log(search);
-
   }
+
 };
 
-printSearchResults(library, "Woodstock 1952");
+printSearchResults(library, "three");
