@@ -13,5 +13,5 @@ const person = {
 
 console.log(`Hello, ${person.fullName()}. How are you today?`);
 
-console.log(person.greeting("silly"));
+console.log(person.greeting("bad"));
 
