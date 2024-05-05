@@ -1,17 +1,13 @@
-const person = {
-  firstName: 'Bob',  // <= property containing data
-  lastName:  'Smith', // <= ditto
-  fullName: function() {
-    return `${this.firstName} ${this.lastName}`;
-  },
-  greeting: function(dayType) {
-    return `Hello, ${this.fullName()}. I hope you have a ${dayType} day!`;
-  }
+const myfunc = function() {
+  return "Good morning!";
 };
 
+const otherfunc = myfunc();
 
+const obj = {
+  hello: "hello",
+  goodbye: "goodbye",
+  greeting: otherfunc
+};
 
-console.log(`Hello, ${person.fullName()}. How are you today?`);
-
-console.log(person.greeting("bad"));
-
+console.log(obj.greeting);
