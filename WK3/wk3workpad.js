@@ -1,10 +1,10 @@
 let group = {
   title: "Our Group",
   students: ["Albert", "Betty", "Carl", "Dinah"],
-  showList() {
+  showList: () => {
     let studentList = "";
 
-    for (const s of this.students) {
+    for (const s of group.students) {
       if (studentList.length) {
         studentList += `, ${s}`;
       } else {
