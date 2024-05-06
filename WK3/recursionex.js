@@ -6,3 +6,13 @@ const countEvenToTwelve = function(number) {
 };
 
 countEvenToTwelve(0);
+
+
+const multiplesOfThree = function(num) {
+  if (num <= 30) {
+    console.log(num);
+    multiplesOfThree(num + 3);
+  }
+};
+
+multiplesOfThree(0);
