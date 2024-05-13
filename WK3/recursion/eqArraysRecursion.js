@@ -5,7 +5,6 @@ const eqArraysRec = function(arr1, arr2) {
   if (arr1.length !== arr2.length)  {
     return false;
   }
-  
   for (let i = 0; i < arr1.length; i++) {
     if (Array.isArray(arr1[i]) && eqArraysRec(arr1[i], arr2[i]) === false) {
       return false;
@@ -13,7 +12,6 @@ const eqArraysRec = function(arr1, arr2) {
     if (!Array.isArray(arr1[i]) && arr1[i] !== arr2[i]) {
       return false;
     }
-    
   }
   return true;
 };
@@ -23,5 +21,7 @@ const eqArraysRec = function(arr1, arr2) {
 // console.log(eqArraysRec([[2, 3], [4]], [[2, 3], [4]])); // => true
 // console.log(eqArraysRec([[2, 3], [4]], [[2, 3], [4, 5]])); // => false
 // console.log(eqArraysRec([[2, 3], [4]], [[2, 3], 4])); // => false
+// console.log(eqArraysRec([1,2,3], [1,4, 3])); // => false
+
 
 module.exports = eqArraysRec;
