@@ -1,4 +1,4 @@
-const eqArrays = require("../../WK1/lotide/eqArrays");
+const eqArraysRec = require("./eqArraysRecursion");
 
 
 const eqObjectsRec = (ob1, ob2) => {
@@ -11,7 +11,7 @@ const eqObjectsRec = (ob1, ob2) => {
 
   for (const k of ob1Keys) {
     if (Array.isArray(ob1[k]) && Array.isArray(ob2[k])) {
-      if (eqArrays(ob1[k], ob2[k]) === false) {
+      if (eqArraysRec(ob1[k], ob2[k]) === false) {
         return false;
       }
     }
@@ -37,9 +37,9 @@ const obj4 = { a: 1, b: 2 };
 const obj5 = { a: 1, b: 2 };
 const obj6 = { a: 1, b: 2, c: 3 };
 
-
-console.log(eqObjectsRec(obj1, obj2)); //true
-console.log(eqObjectsRec(obj2, obj3)); //false
-console.log(eqObjectsRec(obj3, obj4)); //false
-console.log(eqObjectsRec(obj4, obj5)); //true
-console.log(eqObjectsRec(obj5, obj6)); //false
+// Test Cases
+// console.log(eqObjectsRec(obj1, obj2)); //true
+// console.log(eqObjectsRec(obj2, obj3)); //false
+// console.log(eqObjectsRec(obj3, obj4)); //false
+// console.log(eqObjectsRec(obj4, obj5)); //true
+// console.log(eqObjectsRec(obj5, obj6)); //false

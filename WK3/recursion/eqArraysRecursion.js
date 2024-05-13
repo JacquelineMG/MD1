@@ -19,6 +19,9 @@ const eqArraysRec = function(arr1, arr2) {
 };
 
 
-console.log(eqArraysRec([[2, 3], [4]], [[2, 3], [4]])); // => true
-console.log(eqArraysRec([[2, 3], [4]], [[2, 3], [4, 5]])); // => false
-console.log(eqArraysRec([[2, 3], [4]], [[2, 3], 4])); // => false
+//Test Cases
+// console.log(eqArraysRec([[2, 3], [4]], [[2, 3], [4]])); // => true
+// console.log(eqArraysRec([[2, 3], [4]], [[2, 3], [4, 5]])); // => false
+// console.log(eqArraysRec([[2, 3], [4]], [[2, 3], 4])); // => false
+
+module.exports = eqArraysRec;
