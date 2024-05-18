@@ -89,15 +89,6 @@ describe('#shouldByCar()', () => {
     assert.isUndefined(shouldBuyCar());
   });
 
-
-
-  
 });
 
 
-const carFormat = {
-  price: 1000,
-  color: "Pink",
-  type: "sedan",
-  litresPer100km: 8
-};
