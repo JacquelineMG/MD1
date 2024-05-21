@@ -33,4 +33,4 @@ task2.completeTask();
 task2.logTaskState();
 
 
-//console.log(tasks);
+console.log(tasks);
