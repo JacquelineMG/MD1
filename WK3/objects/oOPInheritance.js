@@ -1,8 +1,9 @@
 class Person {
 
-  constructor(name, quirkyFact) {
+  constructor(name, email, quirkyFact) {
     this.name = name;
     this.quirkyFact = quirkyFact;
+    this.email = email;
   }
 
   bio() {
@@ -37,20 +38,20 @@ class Mentor extends Person {
 }
 
 
-const student1 = new Student("Ariel", "I like cold water swimming.");
+const student1 = new Student("Ariel", "fishbowl@cmail.com", "I like cold water swimming.");
 student1.enroll(2025);
 
 student1.attendingConference(false, "guest");
 
-console.log(student1);
-
 console.log(student1.bio());
 
+console.log(student1);
+
 
 console.log("----------------------------------------------------");
 console.log("----------------------------------------------------");
 
-const mentor1 = new Mentor("Ursula", "I have pet eels.");
+const mentor1 = new Mentor("Ursula", "seaWitch@cmail.com", "I have pet eels.");
 
 console.log(mentor1.bio());
 
