@@ -4,9 +4,24 @@ const check = (number) => {
   const checkNum = Number(number.toString().slice(-1));
   const payloadArr = number.toString().split("").reverse().slice(1);
 
-  console.log(payloadArr);
-};
+  let sum = 0;
 
-console.log(check(123457));
+  for (let i = 0; i < payloadArr.length; i++) {
+    if (i % 2 !== 0) {
+      sum += Number(payloadArr[i]);
+    }
+    if (i % 2 === 0) {
+      let double = payloadArr[i] * 2;
+      if (double < 10) {
+        sum += double;
+      } else {
+        for (let d of double.toString()) {
+          sum += Number(d);
+        }
+      }
+    }
+  }
+  return (10 - (sum  % 10)) === checkNum;
+};
 
 module.exports = check;
