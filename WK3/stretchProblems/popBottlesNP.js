@@ -1,31 +1,69 @@
 
-const purchaseBottles = (money) => {
-  return Math.floor(money / 2);
-};
+const calculateBottles = (money, bottles, summary) => {
 
-const calculateBottles = (initialBottles) => {
+  summary = (summary || {
+    money:    {invested: 0, spent: 0, remaining: 0},
+    bottles:  {purchased: 0, total: 0},
+    caps:     {totalCount: 0, recycled: 0, remaining: 0, bottlesEarned: 0},
+    empties:  {totalCount: 0, recycled: 0, remaining: 0, bottlesEarned: 0}
+  });
 
-  if (initialBottles === 1) {
-    return initialBottles;
+  const availableMoney = money + summary.money.remaining;
+  let availableBottles = 0;
+
+  // invest money / add amount to summary.money.invested
+  if (money) {
+    summary.money.invested += money;
+  }
+  
+
+  // if there's enough available money, purchase bottles
+  // set remaining money to amount left over after purchases
+  if (availableMoney > 1) {
+    summary.bottles.purchased += Math.floor(availableMoney / 2);
+    summary.bottles.total += summary.bottles.purchased;
+    availableBottles += summary.bottles.purchased;
+
+    summary.caps.totalCount += availableBottles;
+    summary.caps.remaining += availableBottles;
+    summary.empties.totalCount += availableBottles;
+    summary.empties.remaining += availableBottles;
+
+    summary.money.remaining = availableMoney % 2;
+    summary.money.spent += availableMoney - availableMoney % 2;
   }
 
-  const bottlesFromCaps = Math.floor(initialBottles / 4);
-  const remainingCaps = initialBottles - (bottlesFromCaps * 4);
+  if (bottles) {
+    availableBottles += bottles;
+    summary.bottles.total += bottles;
+    summary.caps.totalCount += bottles;
+    summary.caps.remaining += bottles;
+    summary.empties.totalCount += bottles;
+    summary.empties.remaining += bottles;
+  }
 
-  console.log("caps", remainingCaps);
 
 
-  const bottlesFromReturns = Math.floor(initialBottles / 2);
-  const remainingBottles = initialBottles - (bottlesFromReturns * 2);
-
-  const newBottles = bottlesFromCaps + bottlesFromReturns;
-  const currentBottles = newBottles + remainingBottles;
-
-  return initialBottles + calculateBottles(currentBottles);
-
+  console.log("Available Bottles:", availableBottles);
+  return summary;
 };
 
-console.log(calculateBottles(purchaseBottles(40)));
+/*
+
+const printResult = summary => {
+  console.log("Money Invested:", summary.money.invested);
+  console.log("Total Bottles:", summary.bottles.total);
+};
+
+printResult(calculateBottles(30));
+
+*/
+
+console.log(calculateBottles(10));
+
+
+
+
 
 
 
