@@ -1,4 +1,5 @@
 
+/*
 const calculateBottles = (money, bottles, summary) => {
 
   summary = (summary || {
@@ -15,38 +16,11 @@ const calculateBottles = (money, bottles, summary) => {
   if (money) {
     summary.money.invested += money;
   }
-  
-
-  // if there's enough available money, purchase bottles
-  // set remaining money to amount left over after purchases
-  if (availableMoney > 1) {
-    summary.bottles.purchased += Math.floor(availableMoney / 2);
-    summary.bottles.total += summary.bottles.purchased;
-    availableBottles += summary.bottles.purchased;
-
-    summary.caps.totalCount += availableBottles;
-    summary.caps.remaining += availableBottles;
-    summary.empties.totalCount += availableBottles;
-    summary.empties.remaining += availableBottles;
-
-    summary.money.remaining = availableMoney % 2;
-    summary.money.spent += availableMoney - availableMoney % 2;
-  }
-
-  if (bottles) {
-    availableBottles += bottles;
-    summary.bottles.total += bottles;
-    summary.caps.totalCount += bottles;
-    summary.caps.remaining += bottles;
-    summary.empties.totalCount += bottles;
-    summary.empties.remaining += bottles;
-  }
 
 
-
-  console.log("Available Bottles:", availableBottles);
   return summary;
 };
+*/
 
 /*
 
@@ -59,7 +33,56 @@ printResult(calculateBottles(30));
 
 */
 
-console.log(calculateBottles(10));
+const calculateBottles = (money, bottles, summary) => {
+
+  summary = summary || {
+    money: {invested: 0, spent: 0, remaining: 0},
+    bottles: {purchased: 0},
+    empties: {recycled: 0, remaining: 0, bottlesEarned: 0}
+  };
+
+  console.log("-------------------");
+  if (summary) {
+    console.log(summary);
+  }
+
+  // invest money
+  if (money) {
+    summary.money.invested += money;
+  }
+
+  const availableMoney = money + summary.money.remaining;
+  let availableBottles = 0 + summary.empties.remaining;
+
+  if (bottles) {
+    console.log("bottles:", bottles);
+    availableBottles = bottles;
+  }
+
+  // if there's money available, buy bottles
+  if (availableMoney > 1) {
+    summary.money.spent = availableMoney - availableMoney % 2;
+    summary.money.remaining = availableMoney % 2;
+    summary.bottles.purchased += Math.floor(availableMoney / 2);
+
+    availableBottles += summary.bottles.purchased;
+  }
+
+  const recycle = (item) => {
+    item.bottlesEarned += Math.floor(item.remaining / 2);
+    item.remaining = item.remaining % 2;
+  };
+
+  recycle("summary.empties");
+
+  console.log("BOTTLES:", availableBottles);
+  console.log("SUMMARY:", summary);
+
+  return summary;
+};
+
+calculateBottles(10);
+// console.log(calculateBottles(10));
 
 
 
