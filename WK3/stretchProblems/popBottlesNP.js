@@ -85,6 +85,33 @@ calculateBottles(10);
 // console.log(calculateBottles(10));
 
 
+/*
+
+console.log("------------");
+  let remainingCaps = tally.remainingCaps;
+  let earnBottlesFromCaps = Math.floor((empties + remainingCaps)  / 4);
+  let earnedBottles = Math.floor(empties / 2);
+  tally.earnedBottles += earnedBottles + earnBottlesFromCaps;
+  remainingCaps = empties - (earnBottlesFromCaps * 4);
+  
+  if (remainingCaps > 3) {
+    earnBottlesFromCaps = Math.floor(remainingCaps / 4);
+    tally.earnedBottles += earnBottlesFromCaps;
+  }
+
+  let remainingBottles = empties - (earnedBottles * 2);
+
+  tally.remainingCaps = remainingCaps;
+  tally.remainingBottles = remainingBottles;
+
+  tally.totalBottles += earnedBottles + earnBottlesFromCaps;
+
+  empties = earnedBottles + earnBottlesFromCaps + remainingBottles;
+  tally.empties = empties;
+  
+*/
+
+
 
 
 

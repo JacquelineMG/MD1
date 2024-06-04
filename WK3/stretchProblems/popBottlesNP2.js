@@ -1,6 +1,5 @@
-// I have 11 bottles
 
-const purchasedBottles = 7;
+const purchasedBottles = 10;
 
 const calculateBottles = (boughtBottles, bottles, tally) => {
   let empties = 0;
@@ -23,60 +22,71 @@ const calculateBottles = (boughtBottles, bottles, tally) => {
     tally.totalBottles += boughtBottles;
     empties += boughtBottles;
   }
+  console.log(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 
-  
-  if (empties > 1) {
-    let remainingCaps = tally.remainingCaps;
-    let earnBottlesFromCaps = Math.floor((empties + remainingCaps)  / 4);
-    let earnedBottles = Math.floor(empties / 2);
-    tally.earnedBottles += earnedBottles + earnBottlesFromCaps;
+  let remainingBottles = tally.remainingBottles;
+  let remainingCaps = tally.remainingCaps;
+  const currentBottles = empties + remainingBottles;
+  const currentCaps = empties + remainingCaps;
+  let bottlesEarnedFromBottles;
+  let bottlesEarnedFromCaps;
 
-    remainingCaps = empties - (earnBottlesFromCaps * 4);
-    let remainingBottles = empties - (earnedBottles * 2);
+  console.log("Before:", {
+    empties: empties,
+    remainingBottles: remainingBottles,
+    remainingCaps: remainingCaps
+  });
 
-    tally.remainingCaps = remainingCaps;
-    tally.remainingBottles = remainingBottles;
+  // 10 empties / 2 =
+  //    5 full bottles back and 0 empty remaining
+  // 10 empties / 4 =
+  //    2 full bottles back and 2 caps remaining
 
-    tally.totalBottles += earnedBottles + earnBottlesFromCaps;
+  bottlesEarnedFromBottles = Math.floor(currentBottles / 2);
+  bottlesEarnedFromCaps = Math.floor(currentCaps / 4);
 
-    empties = earnedBottles + earnBottlesFromCaps + remainingBottles;
-    tally.empties = empties;
 
-    calculateBottles(0, empties, tally);
-  }
+
+
+
+
+
+  console.log("After:", {
+    empties: empties,
+    remainingBottles: remainingBottles,
+    remainingCaps: remainingCaps,
+    bottlesEarnedFromBottles: bottlesEarnedFromBottles,
+    bottlesEarnedFromCaps: bottlesEarnedFromCaps,
+  });
+  console.log("-----------------------------------------------------");
+
+
+
+
+
 
   return tally;
 };
 
 console.log(calculateBottles(purchasedBottles));
 
+
+// I have 10 bottles
 // Once I'm done drinking them, I can recycle them to get 1 full bottle back for every 2 empties
-// an 1 full bottle for every 4 caps
+// and 1 full bottle for every 4 caps
 
-// 11 empties / 2 =
-//    5 full bottles back and 1 empty remaining
-// 11 empties / 4 =
-//    2 full bottles back and 3 caps remaining
+// 10 empties / 2 =
+//    5 full bottles back and 0 empty remaining
+// 10 empties / 4 =
+//    2 full bottles back and 2 caps remaining
 
-// current full bottles = 7
-// current empties = 1
 
-// Once I'm done drinking the 7 full bottles, I have 8 empties I can recycle
+// Now I have 7 full bottles, 0 empties, 2 caps
+// After drinking:
+// 7 empties / 2 =
+//    3 full bottles back and 1 empty remaining
+// 7 empties + 2 caps / 4 =
+//    2 full bottles back and 1 cap remaining
 
-// 8 empties / 2 =
-//    4 full bottles back and 0 empties remaining
-// 8 empties + 3 caps / 4 =
-//    2 full bottles back and 3 caps remaining
 
-// Once I'm done drinking the 3 full bottles, I have 3 empties I can recycle
-
-// 3 empties / 2 = 1 full bottle back and 1 empty remaining
-
-// Once I'm done drinking the 1 full bottle, I have 2 empties I can recycle
-
-// 2 empties / 2 = 1 full bottle back and 0 empties remaing
-
-// Once I'm done drinking the 1 full bottle, I don't have enough empties to earn a free bottle :(
-
-// From 11 purchased bottles, I earned 10 full bottles
-
+// Now I have 5 full bottles, 1 empty, 1 cap
