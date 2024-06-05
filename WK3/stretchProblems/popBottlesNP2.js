@@ -1,92 +1,89 @@
 
-const purchasedBottles = 10;
+// Get process argv:
+const investment = Number(process.argv[2]);
+
+const purchaseBottles = (invest) => {
+  return Math.floor(invest / 2);
+};
 
 const calculateBottles = (boughtBottles, bottles, tally) => {
-  let empties = 0;
+  let fullBottles = 0;
 
   if (bottles) {
-    empties = bottles;
+    fullBottles = bottles;
   }
 
   tally = tally || {
     totalBottles: 0,
     boughtBottles: 0,
     earnedBottles: 0,
+    earnedFromBottles: 0,
+    earnedFromCaps: 0,
     remainingBottles: 0,
     remainingCaps: 0,
-    empties: 0,
+    fullBottles: 0,
   };
 
   if (boughtBottles) {
     tally.boughtBottles += boughtBottles;
     tally.totalBottles += boughtBottles;
-    empties += boughtBottles;
+    fullBottles += boughtBottles;
   }
-  console.log(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 
+  // get # of remaining bottles/caps after last recycle:
   let remainingBottles = tally.remainingBottles;
   let remainingCaps = tally.remainingCaps;
-  const currentBottles = empties + remainingBottles;
-  const currentCaps = empties + remainingCaps;
-  let bottlesEarnedFromBottles;
-  let bottlesEarnedFromCaps;
 
-  console.log("Before:", {
-    empties: empties,
-    remainingBottles: remainingBottles,
-    remainingCaps: remainingCaps
-  });
+  // calculate # of bottles/caps available for recycling:
+  const currentBottles = fullBottles + remainingBottles;
+  const currentCaps = fullBottles + remainingCaps;
 
-  // 10 empties / 2 =
-  //    5 full bottles back and 0 empty remaining
-  // 10 empties / 4 =
-  //    2 full bottles back and 2 caps remaining
+  // calculate how many bottles are earned this recycle period:
+  const bottlesEarnedFromBottles = Math.floor(currentBottles / 2);
+  tally.earnedFromBottles += bottlesEarnedFromBottles;
+  const bottlesEarnedFromCaps = Math.floor(currentCaps / 4);
+  tally.earnedFromCaps += bottlesEarnedFromCaps;
 
-  bottlesEarnedFromBottles = Math.floor(currentBottles / 2);
-  bottlesEarnedFromCaps = Math.floor(currentCaps / 4);
+  const bottlesEarned = bottlesEarnedFromBottles + bottlesEarnedFromCaps;
 
+  // add # of bottles earned this recycle to totals in tally:
+  tally.earnedBottles += bottlesEarned;
+  tally.totalBottles += bottlesEarned;
 
+  // calculate how many bottles/caps are left after recycling:
+  remainingBottles = currentBottles % 2;
+  remainingCaps = currentCaps % 4;
 
+  // set remainders in tally:
+  tally.remainingBottles = remainingBottles;
+  tally.remainingCaps = remainingCaps;
 
-
-
-
-  console.log("After:", {
-    empties: empties,
-    remainingBottles: remainingBottles,
-    remainingCaps: remainingCaps,
-    bottlesEarnedFromBottles: bottlesEarnedFromBottles,
-    bottlesEarnedFromCaps: bottlesEarnedFromCaps,
-  });
-  console.log("-----------------------------------------------------");
+  // set fullBottles to # earned this recycle:
+  fullBottles = bottlesEarned;
+  tally.fullBottles = fullBottles;
 
 
-
-
-
+  // if there are still enough bottles, recycle once again:
+  if (fullBottles + remainingBottles > 1) {
+    tally = calculateBottles(0, fullBottles, tally);
+  }
 
   return tally;
 };
 
-console.log(calculateBottles(purchasedBottles));
+const calculate = calculateBottles(purchaseBottles(investment));
 
+const printResult = (input) => {
+  console.log(`
+  TOTAL BOTTLES: ${input.totalBottles}
+  REMAINING BOTTLES: ${input.remainingBottles}
+  REMAINING CAPS: ${input.remainingCaps}
+  -------------------
+  TOTAL EARNED:
+    FROM BOTTLES: ${input.earnedFromBottles}
+    FROM CAPS: ${input.earnedFromCaps}
+  `);
+};
 
-// I have 10 bottles
-// Once I'm done drinking them, I can recycle them to get 1 full bottle back for every 2 empties
-// and 1 full bottle for every 4 caps
+printResult(calculate);
 
-// 10 empties / 2 =
-//    5 full bottles back and 0 empty remaining
-// 10 empties / 4 =
-//    2 full bottles back and 2 caps remaining
-
-
-// Now I have 7 full bottles, 0 empties, 2 caps
-// After drinking:
-// 7 empties / 2 =
-//    3 full bottles back and 1 empty remaining
-// 7 empties + 2 caps / 4 =
-//    2 full bottles back and 1 cap remaining
-
-
-// Now I have 5 full bottles, 1 empty, 1 cap
