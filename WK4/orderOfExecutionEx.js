@@ -1,3 +1,9 @@
+const period = () => {
+  setInterval(() => {
+    process.stdout.write(".");
+  }, 1000);
+};
+
 const startWashingMachine = () => {
   console.log("Starting washing machine.");
 
@@ -23,10 +29,11 @@ const tidy = () => {
 };
 
 
+
 startDishwasher();
 startWashingMachine();
 
 dust();
 tidy();
 
-
+period();
