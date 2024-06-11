@@ -25,6 +25,7 @@ class Transaction {
 
   commit() {
     if (!this.isAllowed()) return false;
+
     this.time = new Date();
     this.account.addTransaction(this);
     return true;
