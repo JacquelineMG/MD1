@@ -1,3 +1,40 @@
+class Plant {
+  water() {
+    console.log(`Watering the ${this.type}`);
+    this.lastWatered = Date();
+  }
+}
+
+class Flower extends Plant {
+  constructor() {
+    super();
+    this.type = "flower";
+  }
+}
+
+class Tree extends Plant {
+  constructor() {
+    super();
+    this.type = "tree";
+  }
+}
+
+class Bush extends Plant {
+  constructor() {
+    super();
+    this.type = "bush";
+  }
+}
+
+const lilac = new Bush();
+const apple = new Tree();
+const rose = new Flower();
+
+lilac.water();
+apple.water();
+rose.water();
+
+/*
 class TaskList {
   constructor() {
     this.list = [];
@@ -39,7 +76,7 @@ console.log(myTask);
 
 
 ////////////////////////////////////////
-/*
+
 class Pizza {
   constructor() {
     this.toppings = [];
