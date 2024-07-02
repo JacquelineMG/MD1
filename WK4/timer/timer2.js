@@ -17,7 +17,7 @@ process.on('SIGINT', () => {
   goodbye();
 });
 
-process.stdin.on('readable', function() {
+process.stdin.on('readable', () => {
   let chunk = process.stdin.read();
 
   if (chunk === null) {
