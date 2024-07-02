@@ -6,12 +6,16 @@ const beep = () => {
 
 const goodbye = () => {
   process.stdout.write("Thanks for using me, ciao!");
+  process.exit(0);
 };
 
 process.stdin.setEncoding('utf8');
 
 const os = require('os');
 
+process.on('SIGINT', () => {
+  goodbye();
+});
 
 process.stdin.on('readable', function() {
   let chunk = process.stdin.read();
@@ -23,15 +27,15 @@ process.stdin.on('readable', function() {
   chunk = chunk.split(os.EOL);
   if (chunk[0] === "b") {
     beep();
-    goodbye();
   } else {
     let number = Number(chunk[0]);
     if (number > 0) {
       process.stdout.write(`Setting timer for: ${number} seconds \n`);
       setTimeout(() => {
         beep();
-        goodbye();
       }, number * 1000);
+    } else {
+      process.stdout.write(`Sorry, that's not a valid input.`);
     }
   }
 });
