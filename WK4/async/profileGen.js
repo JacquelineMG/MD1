@@ -22,7 +22,7 @@ const responses = [
   "I like brunch. \n",
   "The food of champions! \n",
   "I excel at sitting still. \n",
-  "Thanks for sharing! \n"
+  "You sound awesome! \n"
 ];
 
 const userInfo = {
@@ -37,12 +37,13 @@ const userInfo = {
 
 const profileGen = (index) => {
 
-  if (index === 7) {
-    console.log(`\n Here's your profile:
+  if (index >= questions.length) {
+    console.log(`\n Thanks for sharing! Here's your profile:
 
       ${userInfo[0]} loves listening to ${userInfo[2]} while ${userInfo[1]};
       devouring ${userInfo[4]} for ${userInfo[3]}; prefers ${userInfo[5]} over any other sport;
       and is amazing at ${userInfo[6]}.
+
 `
     );
     rl.close();
