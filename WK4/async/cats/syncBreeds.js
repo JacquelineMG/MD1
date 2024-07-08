@@ -8,6 +8,5 @@ const breedDetails = breed => {
   return catBreeds[breed];
 };
 
-const bombay = breedDetails('Bombay');
 
-console.log(bombay);
+module.exports = breedDetails;
