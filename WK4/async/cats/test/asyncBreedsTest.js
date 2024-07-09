@@ -12,4 +12,19 @@ describe("#breedDetailsFromFile", () => {
       done();
     });
   });
+
+
+  it("provides, via callback, breed details for Balinese cats", done => {
+    breedDetailsFromFile("Balinese", balinese => {
+      assert.equal(expectedBalinese, balinese);
+      done();
+    });
+  });
+
+  it("returns undefined, via callback, for breeds without details", done => {
+    breedDetailsFromFile("Calico", calico => {
+      assert.equal(expectedCalico, calico);
+      done();
+    });
+  });
 });
