@@ -16,3 +16,5 @@ const printOutData = breed => {
 };
 
 breedDetailsFromFile('Bombay', printOutData);
+
+module.exports = breedDetailsFromFile;
