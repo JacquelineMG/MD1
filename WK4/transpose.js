@@ -1,5 +1,6 @@
 const transpose = function(matrix) {
-  // Replace this code with your solution
+
+
   return matrix;
 };
 
@@ -13,14 +14,14 @@ const printMatrix = (matrix) => {
   }
 };
 
-printMatrix(
-  transpose([
-    [1, 2, 3, 4],
-    [1, 2, 3, 4],
-    [1, 2, 3, 4],
-    [1, 2, 3, 4],
-  ])
-);
+// printMatrix(
+//   transpose([
+//     [1, 2, 3, 4],
+//     [1, 2, 3, 4],
+//     [1, 2, 3, 4],
+//     [1, 2, 3, 4],
+//   ])
+// );
 
 console.log("----");
 
@@ -34,4 +35,4 @@ printMatrix(
 
 console.log("----");
 
-printMatrix(transpose([[1, 2, 3, 4, 5, 6, 7]]));
+// printMatrix(transpose([[1, 2, 3, 4, 5, 6, 7]]));
